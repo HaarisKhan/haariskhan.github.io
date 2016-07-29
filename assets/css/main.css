@@ -48,6 +48,24 @@
 		-webkit-text-size-adjust: none;
 	}
 
+	object {
+		width: 50em;
+		height: 65em;
+	}
+
+	#resume {
+		text-align: center;
+		display: block;
+	}
+
+	.popup a img {
+		display: none;
+	}
+
+	.popup a:hover img {
+		display: block;
+	}
+
 /* Box Model */
 
 	*, *:before, *:after {
