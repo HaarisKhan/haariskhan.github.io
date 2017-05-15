@@ -1,0 +1,49 @@
+P = NP. Arguably the most important problem of our generation, the discussion of whether the two classes are equivalent or not has huge repercussions on computation at large.
+But what exactly is P and NP? What are they at large, and why is the equivalence of the two so important? Let's begin with an example
+
+Consider the SUBSET SUM Problem, stated as follows:
+  I give you a set S of integers and a target number k. I ask you to give me a subset of S whose elements sum to k.
+  S = {1, 2, 4, 5, 6, 7}, k = 13.
+
+  A solution to this instance is {2, 5, 6}. You can find this by picking a number, then picking another number, and continuing until you reach k (then you're done) or go over k, in which case you remove a previously chosen number.
+
+  But wait: how did you know this was a valid solution? How could you tell that {2, 5, 6} is a subset that sums to 13? Well, you probably did the following:
+  1) Check that each element is, in fact, in S.
+  2) Summed all the elements, and checked if it was equal to k
+
+  Now let's say I gave you the following instance:
+  S = {74872, 46955, 44966, 79054, 26785, 51995, 91976, 98952, 97615, 5592, 96336, 35354, 8505, 17105, 63006, 68744, 37529, 21576, 6839, 83776, 26306, 79638, 48907, 72893, 90799, 29308}, k = 58848
+
+  I'm going to save the breath and time of finding a solution. Why? The previous process I explained earlier (pick a number, pick another number, etc.) is extremely slow as the size of the problem increases.
+  If I chose 74872, it could very well be a possibility that the rest of the numbers in the set cannot sum in a meaningful way to yield k. However, I wouldn't know that; I would have to exhaust all possible combinations until I found a valid subset.
+  Now imagine if I have a million elements in my set S. This process of picking a number and picking another number would be incredibly slow; you'd brute force a solution, meaning you'd try every combination of elements. And what if none of them could yield k together? You wouldn't know until you tried every single combination!
+
+  However, if I gave you an answer, a subset, and said "This is a solution!", would you be able to call my bluff? Could you check for me? Of course, and rather quickly too! Just check that each element in the subset is in S, and they all sum to k (add them all together).
+
+  The SUBSET SUM Problem is an example of a problem that is easy to verify but not easy to solve. What does it mean to be easy? It means that, as the size of your input increases (i.e. the size of set S), the solution / verification of a problem runs in polynomial time (basically, you don't need to brute-force a solution / verification)
+
+  This is the set of NP problems. NP, or Non-deterministic Polynomial, is the set of all problems that are easy to verify. Formally, NP is the set of all problems whose solution is verifiable in polynomial time. Synonymously, NP is the set of all search problems (more on that later)
+
+P, on the other hand, is the set of problems that have discoverable solutions in polynomial time. In other words, you can think of problems in P as "special": there is some meaningful relationship in the problem that allows us to exploit the structure and find a solution quickly.
+Let's take a quick example of a lookup problem:
+  I give you a set S of integers and a target number k. I want you to tell me if k is within S.
+  S = {1, 2, 4, 5, 6, 7}, k = 5
+
+  This is pretty easy: go through the set looking for k = 5. If you reach the end of the set and haven't found k, return False; else, return True.
+  If S gets enormously large, the algorithm is still pretty fast: all we need to do is go through the set. So if our set has N elements, we'll have to go through all N elements in the worst-case to find k (or return False).
+
+  This is a problem in P: a problem whose algorithm is polynomial to the size of the input (this particular algorithm is linear with respect to the input set). We didn't need to brute-force, didn't need to check every possible combination of elements.
+
+So, to recap:
+  P: Set of all problems for which a solution can be found easily (in polynomial time)
+  NP: Set of all problems for which a solution can be verified easily (again, in polynomial time)
+
+So knowing these definitions, let's reexamine P = NP.
+This question poses the following:
+  "Does the set of all problems that are solvable in polynomial time equal the set of all problems that are verifiable in polynomial time?"
+  Or, more succinctly:
+  "Is the set of problems that are easy to solve also the set of problems that are easy to verify? Are the two sets really the same set?"
+
+  P = NP asks if problems that can be checked quickly can also be solved quickly. If P = NP, problems like SUBSET SUM should be easy to solve (because SUBSET SUM is easy to verify!).
+
+   
