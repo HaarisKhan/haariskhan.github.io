@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+	Strongly Typed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>P VS NP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<div id="header" class="container">
+
+						<!-- Logo -->
+							<h1 id="logo"><a href="PNP.html">P = NP</a></h1>
+							<p>No, N = 1 or P = 0 is <strong> not </strong> the solution </p>
+
+						<!-- Nav -->
+            <nav id="nav">
+              <ul>
+                <li><a href="../index.html"><span>Home</span></a></li>
+                <li>
+                  <a href="../blog.html"><span>Blog</span></a>
+                </li>
+                <li><a href="../projects.html"><span>Projects</span></a></li>
+                <li><a href="../resume.html"><span>Résumé</span></a></li>
+              </ul>
+            </nav>
+
+					</div>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div id="main" class="container">
+						<div id="content">
+
+							<!-- Post -->
+								<article class="box post">
+									<header>
+										<h2>Introduction</h2>
+                    <p> Arguably the most important problem of our generation, the discussion of whether \(P = NP\) has huge repercussions on computation at large.
+                    But what exactly does this question ask? What are \(P\) and \(NP\) at large and why is the equivalence of the two so important? This piece is meant to give a broad overview of the classes with some examples.
+                    Let's begin with some examples to make clear what the two classes are. </p>
+
+                    <h2> \(P\) </h2>
+                    <p>
+
+                      \(P\) denotes the set of problems that have discoverable solutions in polynomial time. <br>
+                      Really, that just means we don't need to check every feasible solution; there's a technique or exploit we can use to find a solution quickly (i.e. divide-and-conquer, dynamic programming, etc.) <br> <br>
+                      What does polynomial time mean? <br>
+                      When we examine the time-complexity of a problem, we consider how the time needed to solve a problem scales with the input size.  <br>
+                      If the algorithm scales quadratically with respect to the input size, we denote it's time-complexity as \(O(n^2)\) where \(n\) refers to the size of the input. <br>
+                      Polynomial time means that the algorithm's complexity is bounded by a polynomial (\(n\) raised to some constant degree, as opposed to exponential (\(e^n \), for instance). An algorithm that solves a problem in \(O(n^3)\) can find a solution faster than a problem in \(O(n^4)\), so we often opt for algorithms with better bounds (we prefer \(log(n)\) to \(n^k\), \(n^k\) to \(2^n\), etc.) <br> <br>
+                      Let's take a quick example of a lookup problem: <br> <br>
+                      Problem: Given set \(S\) of integers and a target number \(k\), determine if \(k\) is an element of \(S\).
+                        $$S = \{1, 2, 4, 5, 6, 7\}$$
+                        $$k = 5$$
+
+                        This is pretty easy: iterate through the set looking for \(k = 5\). If you reach the end of the set and haven't found \(k\), return False; else, return True.
+
+                        <center> <img src="../images/FindK.svg"> </center>
+
+                        The time-complexity of this problem is \(O(n)\), where \(n\) refers to the size of \(S\). <br>
+
+                        If \(S\) gets enormously large, the algorithm is still pretty fast: all we need to do is go through the set. So if our set has N elements, we'll have to go through all N elements in the worst-case to find \(k\) (or return False, if we reach the end and haven't found \(k\)).
+
+                        This is a problem in \(P\): a problem whose solution can be found in time polynomial to the size of the input (this particular algorithm is linear with respect to the input set). We didn't need to brute-force, didn't need to check every possible combination of elements. </p>
+
+                        Note that it's also easy to check if a proposed solution is correct! If I claim \(k = 8 \) is in \(S\), all you need to do is iterate through \(S\) until you find \(k\) (or you reach the end of the set, in which case my proposition was wrong!) <br> <br>
+
+                    <h2> NP </h2>
+                    <p> Now let's consider a tougher problem: the SUBSET SUM Problem, stated as follows: <br>
+                      Given a set \(S\) of integers and a target number \(k\), return a subset of \(S\) whose elements sum to \(k\).
+                      $$S = \{1, 2, 4, 5, 6, 7\}$$
+                      $$k = 13$$
+
+                      An obvious algorithm would be the following:
+
+                      <center> <img src="../images/SubsetSum.svg"> </center>
+
+                      A solution to this instance is \(\{2, 5, 6\}\). You can find this by picking a number, then picking another number, and continuing until you reach \(k\) (then you're done) or go over \(k\), in which case you remove a previously chosen number.
+
+                      But wait: how did you know this was a valid solution? How could you tell that \(\{2, 5, 6\}\) is a subset that sums to 13? Well, you probably did the following: <br>
+                      1) Check that each element is, in fact, in \(S\). <br>
+                      2) Summed all the elements, and checked if it was equal to \(k\). <br> <br>
+
+                      Now let's say I gave you the following instance:
+                      $$S = \{74872, 46955, 44966, 79054, 26785, 51995, 91976, 98952, 97615, 5592, 96336, 35354, 8505, 17105, 63006, 68744, 37529, 21576, 6839, 83776, 26306, 79638\}$$
+                      $$k = 58848$$
+
+
+                      I'm going to save the breath and time of finding a solution. Why? The previous process I explained earlier (pick a number, pick another number, etc.) is extremely slow as the size of the problem increases.
+                      If I chose 74872, it could very well be a possibility that the rest of the numbers in the set cannot sum in a meaningful way to yield \(k\). However, I wouldn't know that beforehand; I would have to exhaust all possible combinations until I found a valid subset or found no possible subset.
+                      Now imagine if I have a million elements in my set \(S\). This process of picking a number and picking another number would be incredibly slow; you'd brute force a solution, meaning you'd try every combination of elements. And what if none of them could yield \(k\) together? You wouldn't know until you tried every single combination! <br> <br>
+
+                      However, if I gave you an answer, a subset, and said "This is a solution!", would you be able to call my bluff? Could you check for me? Of course, and rather quickly too! Just check that each element in the subset is in S, and they all sum to \(k\) (add them all together).
+
+                      The SUBSET SUM Problem is an example of a problem that is easy to verify but not easy to solve. What does it mean to be easy? It means that, as the size of your input increases (i.e. the size of set S), the solution / verification of a problem runs in polynomial time (basically, you don't need to brute-force a solution / verification)
+
+                      This is the set of \(NP\) problems. \(NP\), or Non-deterministic Polynomial, is the set of all problems that are easy to verify. Formally, \(NP\) is the set of all problems whose solution is verifiable in polynomial time (polynomial time means that as the time necessary to produce the solution is in polynomial size to the input). </p>
+
+                      <h2> \(P = NP\) </h2>
+                      <p>
+                        So, to recap: <br>
+                          \(P\): Set of all problems for which a solution can be found easily (in polynomial time) <br> <br>
+                          \(NP\): Set of all problems for which a solution can be verified easily (again, in polynomial time) <br> <br>
+
+                        So knowing these definitions, let's reexamine \(P = NP\). <br> <br>
+                        This question poses the following: <br>
+                          "Does the set of all problems that are solvable in polynomial time equal the set of all problems that are verifiable in polynomial time?" <br>
+                          Or, more succinctly: <br>
+                          "Is the set of problems that are easy to solve also the set of problems that are easy to verify? Are the two sets really the same set?" <br> <br>
+
+                          \(P = NP\) asks if problems that can be checked quickly can also be solved quickly. If \(P = NP\), problems like SUBSET SUM should be easy to solve (because SUBSET SUM is easy to verify!). <br> <br>
+
+                        Why does this matter? What are the consequences? I'll make a formal post on the consequences of \(P = NP\) or \(P \ne NP\) later, but essentially, tasks that were once hard to solve (like finding a tour through all cities with the least cost or finding the largest, fully connected network of friends) have "fast" solutions. <br>
+                        This information allows us to make incredibly helpful optimizations, like the following: <br> <br>
+                        1) AI will be incredibly close to being self-aware. <br>
+                        2) Cryptography would need to be completely revamped (the field currently works under the assumption that \(P \ne NP\)). <br>
+                        3) Operating Systems would be able to schedule tasks in order of importance more quickly, thereby improving the computation and speed of tasks incredibly. <br>
+                        
+                      </p>
+									</header>
+				</div>
+      </div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/skel-viewport.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+	</body>
+</html>

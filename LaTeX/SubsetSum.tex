@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{varwidth}
+\usepackage{algorithm} %ctan.org\pkg\algorithms
+\usepackage{algpseudocode}
+\begin{document}
+\begin{varwidth}{\linewidth}
+\par\noindent
+ \begin{algorithmic}[1]
+ \Procedure{SUBSETSUM}{$S,k$}
+
+ \For{all possible subsets $\in S$} 
+ 	\If{$sum(subset) == k$}
+ 		\State\Return subset
+ 	\EndIf
+ \EndFor
+ 
+ \State\Return $False$ 
+ \EndProcedure
+ \end{algorithmic}
+\end{varwidth}
+\end{document}

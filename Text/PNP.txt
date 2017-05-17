@@ -1,5 +1,5 @@
 P = NP. Arguably the most important problem of our generation, the discussion of whether the two classes are equivalent or not has huge repercussions on computation at large.
-But what exactly is P and NP? What are they at large, and why is the equivalence of the two so important? Let's begin with an example
+But what exactly is P and NP? What are they at large, and why is the equivalence of the two so important? Let's begin with some examples to make clear what the two classes are.
 
 Consider the SUBSET SUM Problem, stated as follows:
   I give you a set S of integers and a target number k. I ask you to give me a subset of S whose elements sum to k.
@@ -46,4 +46,5 @@ This question poses the following:
 
   P = NP asks if problems that can be checked quickly can also be solved quickly. If P = NP, problems like SUBSET SUM should be easy to solve (because SUBSET SUM is easy to verify!).
 
-   
+Why does this matter? What are the consequences? I'll make a formal post on the consequences of P = NP / P != NP later, but essentially, tasks that were once hard to solve (like finding a tour through all cities with the least cost, or finding the largest, fully connected network of friends in a network graph) can be solved quickly.
+This information allows us to make optimizations: AI, for instance, will be incredibly close to being self-aware, Cryptography would need to be completely revamped (because the field works under the assumption that P != NP), and Operating Systems would be able to schedule tasks in order of importance more quickly, thereby improving the computation and speed of tasks incredibly (again, all of these will be expanded on in the future; this is meant just to introduce you to the possibilities if P = NP)

@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{varwidth}
+\usepackage{algorithm} %ctan.org\pkg\algorithms
+\usepackage{algpseudocode}
+\begin{document}
+\begin{varwidth}{\linewidth}
+\par\noindent
+ \begin{algorithmic}[1]
+ \Procedure{FindK}{$S,k$}
+
+ \For{$x \in S$} 
+ 	\If{$x = k$}
+ 		\State\Return $True$
+ 	\EndIf
+ \EndFor
+ 
+ \State\Return $False$ 
+ \EndProcedure
+ \end{algorithmic}
+\end{varwidth}
+\end{document}
