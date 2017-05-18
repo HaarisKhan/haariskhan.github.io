@@ -72,7 +72,7 @@
 
                         The time-complexity of this problem is \(O(n)\), where \(n\) refers to the size of \(S\). <br>
 
-                        If \(S\) gets enormously large, the algorithm is still pretty fast: all we need to do is go through the set. So if our set has N elements, we'll have to go through all N elements in the worst-case to find \(k\) (or return False, if we reach the end and haven't found \(k\)).
+                        If \(S\) gets enormously large, the algorithm is still pretty fast: all we need to do is go through the set. So if our set has N elements, we'll have to go through all N elements in the worst-case to find \(k\) (or return False, if we reach the end and haven't found \(k\)). <br>
 
                         This is a problem in \(P\): a problem whose solution can be found in time polynomial to the size of the input (this particular algorithm is linear with respect to the input set). We didn't need to brute-force, didn't need to check every possible combination of elements. </p>
 
@@ -84,11 +84,10 @@
                       $$S = \{1, 2, 4, 5, 6, 7\}$$
                       $$k = 13$$
 
-                      An obvious algorithm would be the following:
+                      Here's an obvious algorithm to solve this problem: <br>
+                      <center> <img src="../images/SubsetSum.svg"> </center> <br>
 
-                      <center> <img src="../images/SubsetSum.svg"> </center>
-
-                      A solution to this instance is \(\{2, 5, 6\}\). You can find this by picking a number, then picking another number, and continuing until you reach \(k\) (then you're done) or go over \(k\), in which case you remove a previously chosen number.
+                      If we run this algorithm on this instance, one solution could be \(\{2, 5, 6\}\) by iterating through all possible subsets of \(S\). <br>
 
                       But wait: how did you know this was a valid solution? How could you tell that \(\{2, 5, 6\}\) is a subset that sums to 13? Well, you probably did the following: <br>
                       1) Check that each element is, in fact, in \(S\). <br>
@@ -96,16 +95,22 @@
 
                       Now let's say I gave you the following instance:
                       $$S = \{74872, 46955, 44966, 79054, 26785, 51995, 91976, 98952, 97615, 5592, 96336, 35354, 8505, 17105, 63006, 68744, 37529, 21576, 6839, 83776, 26306, 79638\}$$
-                      $$k = 58848$$
+                      $$k = 84646$$
 
 
-                      I'm going to save the breath and time of finding a solution. Why? The previous process I explained earlier (pick a number, pick another number, etc.) is extremely slow as the size of the problem increases.
-                      If I chose 74872, it could very well be a possibility that the rest of the numbers in the set cannot sum in a meaningful way to yield \(k\). However, I wouldn't know that beforehand; I would have to exhaust all possible combinations until I found a valid subset or found no possible subset.
+                      The previous process I explained earlier (pick a number, pick another number, etc.) is extremely slow as the size of the problem increases. <br>
                       Now imagine if I have a million elements in my set \(S\). This process of picking a number and picking another number would be incredibly slow; you'd brute force a solution, meaning you'd try every combination of elements. And what if none of them could yield \(k\) together? You wouldn't know until you tried every single combination! <br> <br>
 
-                      However, if I gave you an answer, a subset, and said "This is a solution!", would you be able to call my bluff? Could you check for me? Of course, and rather quickly too! Just check that each element in the subset is in S, and they all sum to \(k\) (add them all together).
+                      However, what if I said I found a solution? The set \(\{79054, 5592\}\)? <br>
+                      Well, both 79054 and 5592 are in \(S\), and their sum is 84646, so this is indeed a valid solution! <br> <br>
 
-                      The SUBSET SUM Problem is an example of a problem that is easy to verify but not easy to solve. What does it mean to be easy? It means that, as the size of your input increases (i.e. the size of set S), the solution / verification of a problem runs in polynomial time (basically, you don't need to brute-force a solution / verification)
+                      Formally, we have an obvious algorithm as follows: <br>
+
+                      Pick a subset, check if the elements sum to \(k\). There are \(2^N\) possible subsets (see <a href="https://en.wikipedia.org/wiki/Power_set"> power set </a>), and summing elements in a set takes linear time, so this algorithm has a runtime of \(O(N * 2^N\)), where \(N\) refers to the size of the input set. <br> <br>
+
+                      However, if I gave you an answer, a subset, and said "This is a solution!", would you be able to call my bluff? Could you check for me? Of course, and rather quickly too! Just check that each element in the subset is in \(S\), and they all sum to \(k\) (add them all together). <br> <br>
+
+                      The SUBSET SUM Problem is an example of a problem that is easy to verify but not easy to solve. Easy means that as the size of your input increases (i.e. the size of set S), the solution / verification of a problem runs in polynomial time (basically, you don't need to brute-force a solution / verification). <br> <br>
 
                       This is the set of \(NP\) problems. \(NP\), or Non-deterministic Polynomial, is the set of all problems that are easy to verify. Formally, \(NP\) is the set of all problems whose solution is verifiable in polynomial time (polynomial time means that as the time necessary to produce the solution is in polynomial size to the input). </p>
 
@@ -127,8 +132,10 @@
                         This information allows us to make incredibly helpful optimizations, like the following: <br> <br>
                         1) AI will be incredibly close to being self-aware. <br>
                         2) Cryptography would need to be completely revamped (the field currently works under the assumption that \(P \ne NP\)). <br>
-                        3) Operating Systems would be able to schedule tasks in order of importance more quickly, thereby improving the computation and speed of tasks incredibly. <br>
-                        
+                        3) Operating Systems would be able to schedule tasks in order of importance more quickly, thereby improving the computation and speed of tasks incredibly. <br> <br>
+
+                        The question of whether the two classes are equivalent boils down to the overall question of whether all questions that are <i> easy to verify </i> are also <i> easy to solve </i>. <br>
+
                       </p>
 									</header>
 				</div>
