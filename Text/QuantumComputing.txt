@@ -1,0 +1,16 @@
+Here, I want to discuss a bit on the intersection between Quantum Computing and Complexity Classes, opening up discussion on what some important classes are, clear up common misconceptions, etc. 
+
+Let's start by defining the very basics of quantum mechanics (note that this piece is a reflection of my understanding, influenced by the works of Scott Aaronson, a phenomenal author on this field if you're interested in learning more)
+
+Quantum Mechanics and Negative Probabilities:
+When asked about what quantum mechanics is -- what it entails, what it studies -- there seems to be a lot of loose sayings and definitions that come to mind: Schrödinger's cat, light is both a wave and a particle, the existence of qubits, etc. 
+
+Let's forget all that and take a quick look at probability theory.
+Recall the Laws of Total Probability:
+1) Every outcome in the sample space is assigned a real number value in the interval [0, 1]. The probability of that outcome occurring is that real number value associated with it.
+2) The sum of all outcomes' probabilities in the sample space must sum to 1.
+3) The probability of at least one of many disjoint (mutually exclusive) events occurring is simply the sum of each events' probability.
+
+I make the claim that we can lax the first definition; namely, a probability can be negative. This should sound extremely strange at first, especially considering the nature of probabilities (i.e. they indicate the likelihood of an outcome occurring). 
+
+However, the confusion behind the existence of negative numbers should be feel similar to the first feelings towards the existence of negative numbers. In elementary school, we were taught that numbers were used as a means to count things: Tom has 3 apples, Susan takes 2 apples, Tom now has 1 apple.

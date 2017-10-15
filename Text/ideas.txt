@@ -15,3 +15,7 @@ Approximation Algorithms
 
 Graph Theory:
 1) Blossom Algorithm
+
+Imaginary Numbers:
+  Fourier Transform
+  Laplace Transform
